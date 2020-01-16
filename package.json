@@ -1,0 +1,82 @@
+{
+	"name": "hovertranslate",
+	"displayName": "Hover Translate",
+	"description": "translate text on hover",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.41.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"title": "Enable",
+				"command": "hovertranslate.enableHover",
+				"category": "Hover Translate"
+			},
+			{
+				"title": "Disable",
+				"command": "hovertranslate.disableHover",
+				"category": "Hover Translate"
+			}
+		],
+		"configuration": {
+			"properties": {
+				"hovertranslate.enableExtension": {
+					"type": "boolean",
+					"default": true
+				},
+				"hovertranslate.yandexApiKey": {
+					"type": "string",
+					"default": ""
+				},
+				"hovertranslate.translateFrom": {
+					"type": "string",
+					"default": "auto",
+					"enum": ["auto", "en", "jp", "fr", "es"],
+					"enumDescriptions": [
+						"Auto Detect Language",
+						"English",
+						"Japanese",
+						"French",
+						"Spanish"
+					]
+				},
+				"hovertranslate.translateTo": {
+					"type": "string",
+					"default": "en",
+					"enum": ["en", "jp", "fr", "es"],
+					"enumDescriptions": [
+						"English",
+						"Japanese",
+						"French",
+						"Spanish"
+					]
+				}
+			}
+		}
+	},
+	"scripts": {
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.41.0",
+		"eslint": "^6.6.0",
+		"glob": "^7.1.5",
+		"mocha": "^6.2.2",
+		"typescript": "^3.6.4",
+		"vscode-test": "^1.2.2"
+	},
+	"dependencies": {
+		"axios": "^0.19.1"
+	}
+}
