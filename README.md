@@ -4,7 +4,7 @@ Hover translate is a vs code extension to translate text on hover.  Currently, t
 
 ## Features
 
-\!\[translate\]\(demo/demo.gif\)
+![translate](./demo/demo.gif)
 
 ## Requirements
 
