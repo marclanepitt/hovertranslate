@@ -1,6 +1,6 @@
 # hovertranslate README
 
-This is the README for your extension "hovertranslate". After writing up a brief description, we recommend including the following sections.
+Hover translate is a vs code extension to translate text on hover.
 
 ## Features
 
