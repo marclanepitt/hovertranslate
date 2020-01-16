@@ -1,4 +1,4 @@
-# hovertranslate README
+# Hover Translate
 
 Hover translate is a vs code extension to translate text on hover.  Currently, this plugin uses Yandex translate and requires a yandex api key which you can obtain for free (https://tech.yandex.com/translate/). Support for google translate api may be added in the future.
 
