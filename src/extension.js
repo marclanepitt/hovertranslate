@@ -43,7 +43,7 @@ function setupHoverProvider() {
 	let key = vscode.workspace.getConfiguration('hovertranslate').get('yandexApiKey', true);
 	let translateDirection = translateFrom == 'auto' ? translateTo : `${translateFrom} - ${translateTo}`;
 	if(vscode.workspace.getConfiguration('hovertranslate').get('enableExtension', true)) {
-		let disposable = vscode.languages.registerHoverProvider( { pattern: '*' }, {
+		let disposable = vscode.languages.registerHoverProvider( { pattern: '**' }, {
 			provideHover(document, position, token) {
 				const range = document.getWordRangeAtPosition(position);
 				const word = document.getText(range);
