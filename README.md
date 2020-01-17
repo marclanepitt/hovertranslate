@@ -18,19 +18,32 @@ This extension contributes the following settings:
 
 * `hovertranslate.enableExtension`: enable/disable this extension
 * `hovertranslate.yandexApiKey`: Yandex translate api key
+* `hovertranslate.hideSameLangHover`: Do not show tooltip if the detected language of a word is the same as your translate to
 * `hovertranslate.translateFrom`: Language to translate text from
   * Options
     * Auto Detect Language
+    * Arabic
+    * German
     * English
-    * Japanese
-    * French
     * Spanish
+    * French
+    * Italian
+    * Japanese
+    * Korean
+    * Russian
+    * Chinese
 * `hovertranslate.translateTo`: Language to translate text to
   * Options
+    * Arabic
+    * German
     * English
-    * Japanese
-    * French
     * Spanish
+    * French
+    * Italian
+    * Japanese
+    * Korean
+    * Russian
+    * Chinese
 
 Note: This extension can support all language Yandex translate supports. This set was chosen for now. Submit a pr or open an issue if you want another one. (https://github.com/marclanepitt/hovertranslate)
 
