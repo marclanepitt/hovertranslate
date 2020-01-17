@@ -41,27 +41,37 @@ function setupHoverProvider() {
 	let translateTo = vscode.workspace.getConfiguration('hovertranslate').get('translateTo', true);
 	let translateFrom = vscode.workspace.getConfiguration('hovertranslate').get('translateFrom', true);
 	let key = vscode.workspace.getConfiguration('hovertranslate').get('yandexApiKey', true);
+	let hideSameLangHover = vscode.workspace.getConfiguration('hovertranslate').get('hideSameLangHover', true);
 	let translateDirection = translateFrom == 'auto' ? translateTo : `${translateFrom} - ${translateTo}`;
 	if(vscode.workspace.getConfiguration('hovertranslate').get('enableExtension', true)) {
 		let disposable = vscode.languages.registerHoverProvider( { pattern: '**' }, {
-			provideHover(document, position, token) {
+			async provideHover(document, position, token) {
 				const range = document.getWordRangeAtPosition(position);
 				const word = document.getText(range);
 
 				if(key) {
-					return axios.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=${key}&text=${encodeURIComponent(word)}&lang=${translateDirection}`)
-					.then(function (response) {
-						let translatedWord = response.data.text[0];
-						return new vscode.Hover({
-							value: translatedWord
+					let language = hideSameLangHover ? await getLanguage(key, word) : null;
+					if(language === null || language !== translateTo) {
+						return axios.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=${key}&text=${encodeURIComponent(word)}&lang=${translateDirection}`)
+						.then(function (response) {
+							let translatedWord = response.data.text[0];
+							if(translatedWord == word) {
+								return new vscode.Hover({
+									value: 'Translate Error: Not Supported'
+								});
+							} else {
+								return new vscode.Hover({
+									value: translatedWord
+								});
+							}
+						})
+						.catch(function (error) {
+							console.log(error);
+							return new vscode.Hover({
+								value: 'Translate Error: Unknown'
+							});
 						});
-					})
-					.catch(function (error) {
-						console.log(error);
-						return new vscode.Hover({
-							value: 'Error translating text'
-						});
-					});
+					}
 				} else {
 					vscode.window.showInformationMessage('Add yandex API key in settings to enable hover translate');
 				}
@@ -76,4 +86,11 @@ function disposeAll() {
 	disposables.forEach(item => item.dispose());
 	}
 	disposables = [];
+}
+
+function getLanguage(key, word) {
+	return axios.get(`https://translate.yandex.net/api/v1.5/tr.json/detect?key=${key}&text=${encodeURIComponent(word)}`)
+	.then(function (response) {
+		return response.data.lang;
+	})
 }

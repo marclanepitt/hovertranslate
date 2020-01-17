@@ -45,25 +45,41 @@
 				"hovertranslate.translateFrom": {
 					"type": "string",
 					"default": "auto",
-					"enum": ["auto", "en", "jp", "fr", "es"],
+					"enum": ["auto", "ar", "de", "en", "es", "fr", "it", "ja", "ko", "ru", "zh"],
 					"enumDescriptions": [
 						"Auto Detect Language",
+						"Arabic",
+						"German",
 						"English",
-						"Japanese",
+						"Spanish",
 						"French",
-						"Spanish"
+						"Italian",
+						"Japanese",
+						"Korean",
+						"Russian",
+						"Chinese"
 					]
 				},
 				"hovertranslate.translateTo": {
 					"type": "string",
 					"default": "en",
-					"enum": ["en", "jp", "fr", "es"],
+					"enum": ["ar", "de", "en", "es", "fr", "it", "ja", "ko", "ru", "zh"],
 					"enumDescriptions": [
+						"Arabic",
+						"German",
 						"English",
-						"Japanese",
+						"Spanish",
 						"French",
-						"Spanish"
+						"Italian",
+						"Japanese",
+						"Korean",
+						"Russian",
+						"Chinese"
 					]
+				},
+				"hovertranslate.hideSameLangHover": {
+					"type": "boolean",
+					"default": "true"
 				}
 			}
 		}
