@@ -55,15 +55,9 @@ function setupHoverProvider() {
 						return axios.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=${key}&text=${encodeURIComponent(word)}&lang=${translateDirection}`)
 						.then(function (response) {
 							let translatedWord = response.data.text[0];
-							if(translatedWord == word) {
-								return new vscode.Hover({
-									value: 'Translate Error: Not Supported'
-								});
-							} else {
-								return new vscode.Hover({
-									value: translatedWord
-								});
-							}
+							return new vscode.Hover({
+								value: translatedWord
+							});
 						})
 						.catch(function (error) {
 							console.log(error);
